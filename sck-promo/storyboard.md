@@ -1,4 +1,4 @@
-# Storyboard — STATS ChipPAC Korea 60s (16:9, 60fps, 120 BPM)
+# Storyboard — STATSChipPAC Korea 60s (16:9, 60fps, 120 BPM)
 
 **Concept.** The film follows one idea: a chip is complete only once it connects to the world.
 
@@ -22,7 +22,7 @@
 | 28.5–36 | Incheon | Dotted globe with the Incheon pin. Arcs go out on successive beats. Tags: Assembly & Test, then R&D. | Globe turns slowly. Brand wipe out. | Half groove, whoosh |
 | 36–43.25 | Standards | 7 certification tiles styled as chip packages: IATF 16949, ISO 9001/14001/45001/50001/27001/22301. Traces meet a bus and the magenta dot runs along it. | Tiles appear in the order the narration names them. Scale punch out. | Full groove; a blip on each tile |
 | 43.25–54.75 | Scale · AI | Giant "No.3": JCET, world No.3 OSAT by 2024 revenue. Then an AI · HPC package with pulses, a production conveyor and "consistently high utilization". | Overshoot on the 3 (the only one in the scene); the package pulses on the beat. Brand wipe out. | Full groove plus arpeggio |
-| 54.75–60 | Lockup | Logo revealed left to right. The magenta dot flies in and lands on the "i". Tagline, then "STATS ChipPAC Korea". Last 0.5 s holds. | Dot lands at 55.9 with a ring burst. | Slam, crash and bell chord, then fade |
+| 54.75–60 | Lockup | Logo revealed left to right. The magenta dot flies in and lands on the "i". Tagline, then "STATSChipPAC Korea". Last 0.5 s holds. | Dot lands at 55.9 with a ring burst. | Slam, crash and bell chord, then fade |
 
 **Captions.** The narration text sits at the bottom of the frame. Each paragraph is split into phrases, and each phrase is timed by its share of the characters.
 

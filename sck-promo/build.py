@@ -16,9 +16,9 @@ COPY = {
                play='소리와 함께 재생', sound='소리 켬',
                aria='스태츠칩팩코리아 60초 기업 홍보 애니메이션: 칩과 범프, 1984년부터의 연혁, 패키징 기술, 인천국제공항 자유무역지역, 국제 인증, JCET 매출 기준 글로벌 OSAT 3위, AI·HPC, 로고.',
                chapters=['연결', '연혁', '기술', '인천', '인증', '규모 · AI', '로고']),
-    'en': dict(h1='STATS ChipPAC Korea — Corporate Film', meta='60 seconds · 1920×1080 · 60fps · English narration · original synthesised score. On-screen facts are limited to officially verified information.',
+    'en': dict(h1='STATSChipPAC Korea — Corporate Film', meta='60 seconds · 1920×1080 · 60fps · English narration · original synthesised score. On-screen facts are limited to officially verified information.',
                play='Play with sound', sound='Sound on',
-               aria='STATS ChipPAC Korea 60-second corporate animation: chip and bumps, heritage since 1984, packaging technologies, Incheon Airport Free Trade Zone, international certifications, JCET world No.3 OSAT by 2024 revenue, AI and HPC, logo.',
+               aria='STATSChipPAC Korea 60-second corporate animation: chip and bumps, heritage since 1984, packaging technologies, Incheon Airport Free Trade Zone, international certifications, JCET world No.3 OSAT by 2024 revenue, AI and HPC, logo.',
                chapters=['Connect', 'Heritage', 'Technology', 'Incheon', 'Standards', 'Scale · AI', 'Logo']),
 }
 out = root / 'out'; out.mkdir(exist_ok=True)

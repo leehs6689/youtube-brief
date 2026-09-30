@@ -1,4 +1,4 @@
-/* STATS ChipPAC Korea — 60 s corporate film. Scenes are pure functions of time.
+/* STATSChipPAC Korea — 60 s corporate film. Scenes are pure functions of time.
    Signature motif: the magenta dot from the logo = a solder bump = the point of connection.
    It lights the die (hook), travels the heritage line, marks Incheon on the globe,
    runs the certification bus, and lands on the "i" of the logo at the end. */
@@ -21,7 +21,7 @@
   // ---------------- copy (per language) ----------------
   const T = KR ? {
     hookSmall: '모든 반도체는', hook1: '연결될 때,', hook2: '완성됩니다.',
-    n1: ['현대전자', '반도체 조립 부문에서 출발'], n2: ['STATS ChipPAC', '스태츠칩팩으로'], n3: ['JCET Group', '제이셋 그룹 합류'],
+    n1: ['현대전자', '반도체 조립 부문에서 출발'], n2: ['STATSChipPAC', '스태츠칩팩으로'], n3: ['JCET Group', '제이셋 그룹 합류'],
     years: '년, 쌓아온 패키징의 역사', now: '이제, 인천에서',
     techSub: ['플립칩', '패키지 온 패키지', '웨이퍼 레벨', '시스템 인 패키지'],
     wafer1: '12인치', wafer2: '웨이퍼 범핑', pitchPre: '최소 범프 피치', pitchPost: '대응',
@@ -33,7 +33,7 @@
     tagline: '칩을 세상과 잇다',
   } : {
     hookSmall: 'Every chip is', hook1: 'complete when', hook2: 'connected.',
-    n1: ['Hyundai Electronics', 'Semiconductor assembly division'], n2: ['STATS ChipPAC', 'A new name'], n3: ['JCET Group', 'Joins the JCET Group'],
+    n1: ['Hyundai Electronics', 'Semiconductor assembly division'], n2: ['STATSChipPAC', 'A new name'], n3: ['JCET Group', 'Joins the JCET Group'],
     years: 'years of packaging expertise', now: 'Now in Incheon',
     techSub: ['', '', '', ''],
     wafer1: '12-inch', wafer2: 'wafer bumping', pitchPre: 'Bump pitch down to', pitchPost: '',
@@ -56,7 +56,7 @@
     null,
   ] : [
     ['Every chip is complete only when it connects to the world.'],
-    ["It began in 1984 at Hyundai Electronics' assembly division,", 'became STATS ChipPAC in 2004, and joined the JCET Group in 2015.', 'Over forty years of packaging expertise, now in Incheon.'],
+    ["It began in 1984 at Hyundai Electronics' assembly division,", 'became STATSChipPAC in 2004, and joined the JCET Group in 2015.', 'Over forty years of packaging expertise, now in Incheon.'],
     ['Flip chip, package-on-package, wafer-level,', 'and advanced system-in-package.', 'Our 12-inch wafer bumping line is capable of', 'bump pitches down to 40 microns.'],
     ['Assembly and test in the Incheon Airport Free Trade Zone,', 'backed by our R&D center in Korea.'],
     ['Automotive quality, environment, safety, energy and information security —', 'trust, proven by international standards.'],
@@ -621,7 +621,7 @@
     dot(ctx, fx, fy, dr * (land < 1 ? 1.4 : lerp(1.4, 1, pop)));
     if (u > 1.15) { const ph = prog(u, 1.15, 1.9); dot(ctx, dx, dy, 0, { ring: [lerp(dr, dr * 7, ease.in(ph)), 0.9 * (1 - ph)] }); }
     E.kin(ctx, T.tagline, W / 2, 680, u, 1.5, { size: KR ? 64 : 58, weight: 700, align: 'center', dur: 0.5 });
-    E.kin(ctx, 'STATS ChipPAC Korea', W / 2, 760, u, 2.0, { size: 30, weight: 600, align: 'center', color: C.muted, track: 0.18, dur: 0.5 });
+    E.kin(ctx, 'STATSChipPAC Korea', W / 2, 760, u, 2.0, { size: 30, weight: 600, align: 'center', color: C.muted, track: 0.18, dur: 0.5 });
   }
 
   // ======================= captions (bottom) =======================

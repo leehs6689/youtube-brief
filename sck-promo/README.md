@@ -1,4 +1,4 @@
-# STATS ChipPAC Korea — 60초 기업 홍보 영상
+# STATSChipPAC Korea — 60초 기업 홍보 영상
 
 ## 결과물
 두 편 모두 1920×1080, 60fps, H.264와 AAC 형식이며 음량은 -14 LUFS로 맞췄습니다.
