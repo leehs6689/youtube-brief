@@ -21,34 +21,34 @@
   // ---------------- copy (per language) ----------------
   const T = KR ? {
     hookSmall: '모든 반도체는', hook1: '연결될 때,', hook2: '완성됩니다.',
-    n1: ['현대전자', '반도체 조립 부문에서 출발'], n2: ['STATSChipPAC', '스태츠칩팩으로'], n3: ['JCET Group', '제이셋 그룹 합류'],
-    years: '년, 쌓아온 패키징의 역사', now: '이제, 인천에서',
+    n1: ['현대전자', '반도체 조립 부문에서 출발'], n2: ['STATSChipPAC', '스태츠칩팩으로'], n3: ['JCET Group', 'JCET 그룹 합류'],
+    years: '년 쌓아온 패키징의 역사', now: '이제, 인천에서',
     techSub: ['플립칩', '패키지 온 패키지', '웨이퍼 레벨', '시스템 인 패키지'],
     wafer1: '12인치', wafer2: '웨이퍼 범핑', pitchPre: '최소 범프 피치', pitchPost: '대응',
     placeTag: '조립 · 테스트', place1: '인천국제공항', place2: '자유무역지역', rndTag: 'R&D', rnd: '한국 연구개발 센터',
     qTitle: '국제 표준으로 증명한 신뢰',
     cats: ['자동차 품질', '품질경영', '환경', '안전보건', '에너지', '정보보호', '비즈니스 연속성'],
-    rankTag: 'JCET GROUP · 2024', rank1: '매출 기준 세계 3위', rank2: '반도체 후공정(OSAT) 전문기업',
+    rankTag: '2024', rank1: 'JCET 매출 기준 세계 3위', rank2: '반도체 후공정(OSAT) 전문기업',
     aiSub: 'AI · 고성능 컴퓨팅 수요', util: '꾸준히 높은 가동률', utilSub: '한국 사업장',
-    tagline: '칩을 세상과 잇다',
+    tagline: '칩을 세상과 잇다', corp: '스태츠칩팩코리아',
   } : {
     hookSmall: 'Every chip is', hook1: 'complete when', hook2: 'connected.',
-    n1: ['Hyundai Electronics', 'Semiconductor assembly division'], n2: ['STATSChipPAC', 'A new name'], n3: ['JCET Group', 'Joins the JCET Group'],
+    n1: ['Hyundai Electronics', 'Semiconductor assembly division'], n2: ['STATSChipPAC', 'STATS and ChipPAC merge'], n3: ['JCET Group', 'Joins the JCET Group'],
     years: 'years of packaging expertise', now: 'Now in Incheon',
     techSub: ['', '', '', ''],
     wafer1: '12-inch', wafer2: 'wafer bumping', pitchPre: 'Bump pitch down to', pitchPost: '',
     placeTag: 'ASSEMBLY & TEST', place1: 'Incheon Airport', place2: 'Free Trade Zone', rndTag: 'R&D', rnd: 'R&D center in Korea',
     qTitle: 'Proven by international standards',
     cats: ['Automotive quality', 'Quality management', 'Environment', 'Health & safety', 'Energy', 'Information security', 'Business continuity'],
-    rankTag: 'JCET GROUP · 2024', rank1: 'World No.3 by revenue', rank2: 'Outsourced semiconductor assembly & test (OSAT)',
+    rankTag: '2024', rank1: 'JCET · World No. 3', rank2: 'OSAT (outsourced assembly & test), by revenue',
     aiSub: 'AI & high-performance computing', util: 'Consistently high utilization', utilSub: 'Korea operations',
-    tagline: 'Connecting chips to the world',
+    tagline: 'Connecting chips to the world', corp: 'STATSChipPAC Korea',
   };
 
   // captions: narration split into chunks, timed by character share within each paragraph
   const CAP = KR ? [
-    ['모든 반도체는, 세상과 연결될 때 비로소 완성됩니다.'],
-    ['1984년 현대전자 반도체 조립 부문에서 시작해,', '2004년 스태츠칩팩, 2015년 제이셋 그룹으로.', '40년 넘게 쌓아온 패키징의 역사가, 이제 인천에서 이어집니다.'],
+    ['모든 반도체는 세상과 연결될 때 비로소 완성됩니다.'],
+    ['1984년 현대전자 반도체 조립 부문에서 시작해,', '2004년 STATSChipPAC, 2015년 JCET 그룹으로.', '40년 넘게 쌓아온 패키징의 역사가, 이제 인천에서 이어집니다.'],
     ['플립칩, 패키지 온 패키지, 웨이퍼 레벨,', '그리고 첨단 시스템 인 패키지.', '12인치 웨이퍼 범핑 라인은,', '최소 40µm 범프 피치까지 대응합니다.'],
     ['인천국제공항 자유무역지역에서 조립과 테스트를,', '그리고 한국 연구개발 센터에서 다음 기술을 준비합니다.'],
     ['자동차 품질부터 환경, 안전, 에너지, 정보보호까지.', '국제 표준으로 신뢰를 증명합니다.'],
@@ -255,9 +255,9 @@
       if (on) { ctx.fillStyle = C.cyan; ctx.beginPath(); ctx.arc(n.x, LINE_Y, 7, 0, 6.2832); ctx.fill(); }
       // year above, label below (world space)
       const yx = n.x + 44;
-      E.kin(ctx, n.year, yx, LINE_Y - 64, u, n.at, { size: 210, weight: 800, dur: 0.5 });
-      E.kin(ctx, n.lab[0], yx + 6, LINE_Y + 96, u, n.at + 0.12, { size: 56, weight: 700, dur: 0.45 });
-      E.kin(ctx, n.lab[1], yx + 6, LINE_Y + 150, u, n.at + 0.2, { size: 34, weight: 500, color: C.muted, dur: 0.45 });
+      E.kin(ctx, n.year, yx, LINE_Y - 64, u, n.at, { size: 210, weight: 800, dur: 0.5, alpha: lerp(1, 0.9, fin) });
+      E.kin(ctx, n.lab[0], yx + 6, LINE_Y + 96, u, n.at + 0.12, { size: 56, weight: 700, dur: 0.45, alpha: 1 - fin });
+      E.kin(ctx, n.lab[1], yx + 6, LINE_Y + 150, u, n.at + 0.2, { size: 34, weight: 500, color: C.muted, dur: 0.45, alpha: 1 - fin });
       ctx.restore();
     });
     // Incheon end node
@@ -272,11 +272,12 @@
     beatRing(ctx, mx, my, u, 16, 48, 0.7 * (1 - big));
     vignette(ctx);
     // finale HUD
-    if (u > 8.8) {
+    if (u > 9.4) {
       const a = ext(u, D - 0.35, 0.3);
       ctx.save(); ctx.globalAlpha = a;
-      E.kin(ctx, '40+', M, 400, u, 8.95, { size: 280, weight: 800, dur: 0.5 });
-      E.kin(ctx, T.years, M + 560, 400, u, 9.15, { size: 56, weight: 600, color: C.muted, dur: 0.45 });
+      E.kin(ctx, '40+', M, 400, u, 9.55, { size: 280, weight: 800, dur: 0.5 });
+      const w40 = E.measure(ctx, '40+', { size: 280, weight: 800 });
+      E.kin(ctx, T.years, M + w40 + (KR ? 10 : 28), 400, u, 9.7, { size: 56, weight: 600, color: KR ? C.ink : C.muted, dur: 0.45 });
       const nowP = ent(u, 10.5, 0.4, ease.emph);
       if (nowP > 0) dot(ctx, M + 14, 540, 12 * nowP);
       E.kin(ctx, T.now, M + 48, 564, u, 10.5, { size: 72, weight: 800, dur: 0.45 });
@@ -374,7 +375,7 @@
     // close-up of the bump array with a pitch callout
     ctx.save(); ctx.globalAlpha = a;
     const cx = 1360, cy = 560, P = 150, R = 50;
-    for (let i = -3; i <= 4; i++) for (let j = -3; j <= 3; j++) {
+    for (let i = -3; i <= 4; i++) for (let j = -3; j <= 2; j++) {
       const x = cx + i * P, y = cy + j * P; const hi = (i === 0 || i === 1) && j === 0;
       const g = ctx.createRadialGradient(x - R * 0.35, y - R * 0.35, R * 0.1, x, y, R);
       g.addColorStop(0, hi ? '#FFFFFF' : '#9FB6F0'); g.addColorStop(0.5, hi ? C.cyan : '#3D5BC4'); g.addColorStop(1, hi ? '#0060D0' : '#15247A');
@@ -468,7 +469,7 @@
       const s = ent(u, 1.0 + i * 0.5, 0.9, ease.cam); if (s <= 0) return;
       const to = ll2v(...d); ctx.strokeStyle = i % 2 ? C.cyan : C.pink; ctx.lineWidth = 2.5; ctx.beginPath(); let first = true, vis = false;
       for (let k = 0; k <= 40; k++) {
-        const p = k / 40 * s; const v = slerp(home, to, p); const lift = 1 + 0.18 * Math.sin(Math.PI * p / Math.max(s, 1e-3) * s);
+        const p = k / 40 * s; const v = slerp(home, to, p); const lift = 1 + 0.06 * Math.sin(Math.PI * p);
         const [x, y, z] = proj(v, lon0, lat0); if (z < -0.05) { first = true; continue; }
         const X = cx + x * R * lift, Y = cy - y * R * lift; if (first) { ctx.moveTo(X, Y); first = false; } else ctx.lineTo(X, Y); vis = true;
       }
@@ -496,7 +497,7 @@
 
   // ======================= SCENE 5 — QUALITY (36–43.25) =======================
   const CERTS = ['IATF 16949', 'ISO 9001', 'ISO 14001', 'ISO 45001', 'ISO 50001', 'ISO 27001', 'ISO 22301'];
-  const CERT_AT = KR ? [0.35, 3.8, 1.55, 2.05, 2.55, 3.1, 4.05] : [0.35, 3.9, 1.1, 1.6, 2.1, 2.6, 4.15];
+  const CERT_AT = [0.35, 0.85, 1.35, 1.85, 2.35, 2.85, 3.35];
   function chipTile(ctx, x, y, w, h, code, cat, a, hi) {
     ctx.save(); ctx.globalAlpha *= a;
     // pins (package leads) top and bottom
@@ -511,7 +512,7 @@
   }
   function sceneQuality(ctx, u, D, t) {
     background(ctx, t, { net: 0.5, cx: 0.5 });
-    const xa = ext(u, D - 0.3, 0.25);
+    const xa = 1; // the punch transition handles the exit
     ctx.save(); ctx.globalAlpha = xa;
     E.kin(ctx, T.qTitle, M, 200, u, 0.1, { size: 64, weight: 800 });
     const w = 380, h = 170, gap = 36, rows = [[0, 1, 2, 3], [4, 5, 6]];
@@ -578,15 +579,15 @@
     const outA = ease.out(prog(u, 5.0, 5.45));
     if (outA < 1) {
       ctx.save(); ctx.globalAlpha = 1 - outA; ctx.translate(-outA * 300, 0);
-      const pz = ent(u, 0.15, 0.55, ease.emph);
+      const pz = ent(u, 0.0, 0.55, ease.emph);
       ctx.save(); ctx.translate(M, 820); ctx.scale(lerp(0.85, 1, pz), lerp(0.85, 1, pz));
       E.text(ctx, 'No.', 0, -40, { size: 120, weight: 700, color: C.muted, alpha: pz });
       ctx.globalAlpha = pz; gradText(ctx, '3', 190, 0, { size: 620, weight: 800 });
       ctx.restore();
       const bx = 820;
-      pill(ctx, T.rankTag, bx, 380, { alpha: ent(u, 0.5, 0.4) });
-      E.kin(ctx, T.rank1, bx, 510, u, 0.7, { size: KR ? 84 : 76, weight: 800 });
-      E.kin(ctx, T.rank2, bx, 585, u, 1.0, { size: KR ? 40 : 34, weight: 500, color: C.muted });
+      pill(ctx, T.rankTag, bx, 380, { alpha: ent(u, 0.3, 0.4) });
+      E.kin(ctx, T.rank1, bx, 510, u, 0.5, { size: KR ? 76 : 76, weight: 800 });
+      E.kin(ctx, T.rank2, bx, 585, u, 0.8, { size: KR ? 40 : 34, weight: 500, color: C.muted });
       ctx.restore();
     }
     // ---- part B: AI · HPC, utilisation
@@ -610,7 +611,7 @@
     background(ctx, t, { net: lerp(1, 0.4, ent(u, 0, 2)), cx: 0.5 });
     vignette(ctx);
     const LW = 1000, LY = 470;
-    const rev = ent(u, 0.25, 0.9, ease.cam);
+    const rev = ent(u, 0.05, 0.9, ease.cam);
     const info = logo(ctx, W / 2, LY, LW, { mode: 'white', reveal: rev, showDot: false });
     const [dx, dy, dr] = info.dot;
     // the dot flies in along a trace and lands on the "i"
@@ -621,7 +622,7 @@
     dot(ctx, fx, fy, dr * (land < 1 ? 1.4 : lerp(1.4, 1, pop)));
     if (u > 1.15) { const ph = prog(u, 1.15, 1.9); dot(ctx, dx, dy, 0, { ring: [lerp(dr, dr * 7, ease.in(ph)), 0.9 * (1 - ph)] }); }
     E.kin(ctx, T.tagline, W / 2, 680, u, 1.5, { size: KR ? 64 : 58, weight: 700, align: 'center', dur: 0.5 });
-    E.kin(ctx, 'STATSChipPAC Korea', W / 2, 760, u, 2.0, { size: 30, weight: 600, align: 'center', color: C.muted, track: 0.18, dur: 0.5 });
+    E.kin(ctx, T.corp, W / 2, 764, u, 2.0, { size: KR ? 34 : 30, weight: 600, align: 'center', color: C.muted, track: KR ? 0.08 : 0.18, dur: 0.5 });
   }
 
   // ======================= captions (bottom) =======================
@@ -640,6 +641,7 @@
   const TRANS = { 1: 'match', 2: 'wipe', 3: 'punch', 4: 'wipe', 5: 'punch', 6: 'wipe' }; // index of incoming scene
   function drawScene(ctx, i, t) { const s = SC[i]; ctx.save(); SCENES[s.id](ctx, t - s.start, s.end - s.start, t); ctx.restore(); }
   function draw(ctx, t) {
+    ctx.globalAlpha = 1; ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H); // opaque base: no carry-over from the previous frame
     let i = SC.findIndex(s => t >= s.start && t < s.end); if (i < 0) i = SC.length - 1;
     const s = SC[i];
     // transition windows straddle each cut
@@ -661,7 +663,7 @@
         const po = prog(t, cut - HW, cut), pi = prog(t, cut - 0.08, cut + HW);
         if (po < 1) { ctx.save(); ctx.globalAlpha = 1 - ease.out(po); ctx.translate(W / 2, H / 2); ctx.scale(1 + 0.4 * ease.out(po), 1 + 0.4 * ease.out(po)); ctx.translate(-W / 2, -H / 2); drawScene(ctx, inc - 1, t); ctx.restore(); }
         else { ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H); }
-        if (pi > 0) { ctx.save(); ctx.globalAlpha = ease.in(pi); ctx.translate(W / 2, H / 2); const k = lerp(0.82, 1, ease.in(pi)); ctx.scale(k, k); ctx.translate(-W / 2, -H / 2); drawScene(ctx, inc, t); ctx.restore(); }
+        if (pi > 0) { ctx.save(); ctx.globalAlpha = Math.min(1, ease.in(pi) * 1.4); ctx.translate(W / 2, H / 2); const k = lerp(1.1, 1, ease.in(pi)); ctx.scale(k, k); ctx.translate(-W / 2, -H / 2); drawScene(ctx, inc, t); ctx.restore(); }
       }
       done = true;
     }

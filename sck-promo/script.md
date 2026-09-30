@@ -16,7 +16,7 @@ v2 변경(독립 팩트체크 반영):
 | 3 | Technology | Flip Chip · PoP · Wafer-Level · SiP / 12" Wafer Bumping · bump pitch down to 40µm | 플립칩, 패키지 온 패키지, 웨이퍼 레벨, 그리고 첨단 시스템 인 패키지. 12인치 웨이퍼 범핑 라인은, 최소 40마이크로미터 범프 피치까지 대응합니다. | Flip chip, package-on-package, wafer-level, and advanced system-in-package. Our 12-inch wafer bumping line is capable of bump pitches down to 40 microns. | F5, F6 |
 | 4 | Place | 인천국제공항 자유무역지역 / R&D Center Korea | 인천국제공항 자유무역지역에서 조립과 테스트를, 그리고 한국 연구개발 센터에서 다음 기술을 준비합니다. | Assembly and test in the Incheon Airport Free Trade Zone, backed by our R&D center in Korea. | F4, F7 |
 | 5 | Quality | IATF 16949 · ISO 9001 · 14001 · 45001 · 50001 · 27001 · 22301 | 자동차 품질부터 환경, 안전, 에너지, 정보보호까지. 국제 표준으로 신뢰를 증명합니다. | Automotive quality, environment, safety, energy and information security — trust, proven by international standards. | F8 |
-| 6 | Scale | JCET No.3 Global OSAT by revenue (2024) / AI · HPC | 제이셋은 2024년 매출 기준, 세계 3위의 반도체 후공정 전문기업. AI와 고성능 컴퓨팅 수요 속에, 한국 사업장은 꾸준히 높은 가동률을 이어가고 있습니다. | JCET: the world's number-three OSAT by 2024 revenue. And as AI and high-performance computing surge, our Korea operations run at consistently high utilization. | F9, F10 |
-| 7 | Lockup | STATSChipPAC 로고 + 태그라인 | 칩을 세상과 잇다. 스태츠칩팩코리아. | Connecting chips to the world. STATSChipPAC Korea. | — |
+| 6 | Scale | KR "JCET 매출 기준 세계 3위" / EN "JCET · World No. 3" (OSAT, 2024 revenue) / AI · HPC | 제이셋은 2024년 매출 기준, 세계 3위의 반도체 후공정 전문기업. AI와 고성능 컴퓨팅 수요 속에, 한국 사업장은 꾸준히 높은 가동률을 이어가고 있습니다. | JCET: the world's number-three OSAT by 2024 revenue. And as AI and high-performance computing surge, our Korea operations run at consistently high utilization. | F9, F10 |
+| 7 | Lockup | STATSChipPAC 로고 + 태그라인 + 스태츠칩팩코리아 (EN: STATSChipPAC Korea) | 칩을 세상과 잇다. 스태츠칩팩코리아. | Connecting chips to the world. STATSChipPAC Korea. | — |
 
 태그라인 "칩을 세상과 잇다 / Connecting chips to the world"는 이번 영상을 위해 새로 만든 문구입니다. 공식 슬로건이 있으면 그 문구로 바꿉니다.

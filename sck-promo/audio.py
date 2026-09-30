@@ -139,7 +139,7 @@ def build_music(seed=20260930):
     for c in (CUT[3], CUT[5]): place('fx', whoosh(0.5, 400, 7000, 0.35), c - 0.25, 1.0); place('fx', hit(), c, 0.7)
     for a in (0.2, 4.15, 6.45): place('fx', blip(1320), CUT[1] + a, 0.7, send=0.3)          # heritage nodes
     for a in (0.2, 1.3, 2.6, 3.75): place('fx', blip(990), CUT[2] + a, 0.6, send=0.2)        # tech states
-    for a in (0.35, 1.55, 2.05, 2.55, 3.1, 3.8, 4.05): place('fx', blip(1480), CUT[4] + a, 0.45, send=0.2)  # certificate tiles
+    for a in (0.35, 0.85, 1.35, 1.85, 2.35, 2.85, 3.35): place('fx', blip(1480), CUT[4] + a, 0.45, send=0.2)  # certificate tiles
     land = CUT[6] + 1.15
     place('fx', slam(), land, 1.0, send=0.3); place('fx', crash(3.2), land, 0.9); place('fx', shimmer(3.8), land, 1.0, send=0.5)
     place('pad', pad(CH['F'], 4.0, 2200), land, 0.9, send=0.4)
