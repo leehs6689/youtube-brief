@@ -456,34 +456,52 @@
     return [x1, y2, z2];
   }
   function slerp(a, b, p) { const d = Math.acos(clamp(a[0] * b[0] + a[1] * b[1] + a[2] * b[2], -1, 1)); if (d < 1e-6) return a; const s = Math.sin(d); const k1 = Math.sin((1 - p) * d) / s, k2 = Math.sin(p * d) / s; return [a[0] * k1 + b[0] * k2, a[1] * k1 + b[1] * k2, a[2] * k1 + b[2] * k2]; }
+  // Real world map: Natural Earth 1:50m land, borders and South Korea (world-atlas), orthographic via d3-geo.
+  const GEO = global.GEO, d3 = global.d3;
+  const GRAT = d3.geoGraticule10();
   function globe(ctx, u, cx, cy, R, a) {
-    const lon0 = 140 - u * 3, lat0 = 22;
+    const lon0 = 150 - u * 4, lat0 = 24;
+    const pr = d3.geoOrthographic().scale(R).translate([cx, cy]).rotate([-lon0, -lat0]).clipAngle(90).precision(0.3);
+    const path = d3.geoPath(pr, ctx);
     ctx.save(); ctx.globalAlpha = a;
-    const g = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.35, R * 0.1, cx, cy, R);
-    g.addColorStop(0, '#0C1C8C'); g.addColorStop(1, '#040835'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832); ctx.fill();
-    for (const v of SPH) { const [x, y, z] = proj(v, lon0, lat0); if (z <= 0) continue; ctx.fillStyle = `rgba(0,170,255,${0.25 + 0.7 * z})`; ctx.fillRect(cx + x * R - 1.8, cy - y * R - 1.8, 3.6, 3.6); }
-    ctx.strokeStyle = 'rgba(0,214,255,0.5)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832); ctx.stroke();
-    // arcs from Incheon, drawn on successive beats
-    const home = ll2v(...HOME);
+    // ocean
+    const og = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.4, R * 0.05, cx, cy, R);
+    og.addColorStop(0, '#0B1E7A'); og.addColorStop(1, '#030A33');
+    ctx.fillStyle = og; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832); ctx.fill();
+    // graticule
+    ctx.strokeStyle = 'rgba(0,152,255,0.16)'; ctx.lineWidth = 1; ctx.beginPath(); path(GRAT); ctx.stroke();
+    // land with light from the upper left
+    const lg = ctx.createLinearGradient(cx - R, cy - R, cx + R, cy + R);
+    lg.addColorStop(0, '#2E5BFF'); lg.addColorStop(0.55, '#1636B8'); lg.addColorStop(1, '#0C2070');
+    ctx.fillStyle = lg; ctx.beginPath(); path(GEO.land); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,214,255,0.75)'; ctx.lineWidth = 1.1; ctx.beginPath(); path(GEO.land); ctx.stroke();
+    ctx.strokeStyle = 'rgba(160,210,255,0.28)'; ctx.lineWidth = 0.7; ctx.beginPath(); path(GEO.borders); ctx.stroke();
+    // Korea highlighted in brand magenta
+    const kp = ent(u, 0.3, 0.6);
+    ctx.globalAlpha = a * kp; ctx.fillStyle = C.mag; ctx.beginPath(); path(GEO.korea); ctx.fill(); ctx.globalAlpha = a;
+    // limb shading and rim
+    const sh = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.3, R * 0.55, cx, cy, R * 1.02);
+    sh.addColorStop(0, 'rgba(3,5,26,0)'); sh.addColorStop(1, 'rgba(3,5,26,0.55)');
+    ctx.fillStyle = sh; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,214,255,0.6)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832); ctx.stroke();
+    // great-circle routes from Incheon, drawn on successive beats (clipped to the visible hemisphere)
+    const home = [HOME[1], HOME[0]];
     DEST.forEach((d, i) => {
       const s = ent(u, 1.0 + i * 0.5, 0.9, ease.cam); if (s <= 0) return;
-      const to = ll2v(...d); ctx.strokeStyle = i % 2 ? C.cyan : C.pink; ctx.lineWidth = 2.5; ctx.beginPath(); let first = true, vis = false;
-      for (let k = 0; k <= 40; k++) {
-        const p = k / 40 * s; const v = slerp(home, to, p); const lift = 1 + 0.06 * Math.sin(Math.PI * p);
-        const [x, y, z] = proj(v, lon0, lat0); if (z < -0.05) { first = true; continue; }
-        const X = cx + x * R * lift, Y = cy - y * R * lift; if (first) { ctx.moveTo(X, Y); first = false; } else ctx.lineTo(X, Y); vis = true;
-      }
-      if (vis) ctx.stroke();
+      const ip = d3.geoInterpolate(home, [d[1], d[0]]); const coords = [];
+      for (let k = 0; k <= 48; k++) coords.push(ip(k / 48 * s));
+      ctx.strokeStyle = i % 2 ? C.cyan : C.pink; ctx.lineWidth = 2.6; ctx.lineCap = 'round';
+      ctx.beginPath(); path({ type: 'LineString', coordinates: coords }); ctx.stroke();
     });
-    const [hx, hy] = proj(home, lon0, lat0); const HX = cx + hx * R, HY = cy - hy * R;
     ctx.restore();
-    return [HX, HY];
+    return pr(home);
   }
   function scenePlace(ctx, u, D, t) {
     background(ctx, t, { net: 0.5 });
     const inP = ent(u, 0, 0.6);
     const [hx, hy] = globe(ctx, u, 1280, 560, 400 * lerp(0.9, 1, inP), inP);
-    dot(ctx, hx, hy, 11 * ent(u, 0.3, 0.4, ease.emph)); beatRing(ctx, hx, hy, u, 12, 60, 0.9);
+    dot(ctx, hx, hy, 6 * ent(u, 0.3, 0.4, ease.emph)); beatRing(ctx, hx, hy, u, 8, 56, 0.9);
+    E.text(ctx, KR ? '인천' : 'INCHEON', hx + 22, hy - 16, { size: 28, weight: 800, color: C.ink, halo: 'rgba(3,5,26,0.85)', haloWidth: 6, alpha: ent(u, 0.6, 0.4) });
     vignette(ctx);
     const xa = ext(u, D - 0.3, 0.25);
     ctx.save(); ctx.globalAlpha = xa;

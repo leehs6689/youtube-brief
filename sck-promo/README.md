@@ -27,3 +27,6 @@ python3 render.py sheet --lang kr --step 0.5   # 컨택시트 미리보기
 - 색을 바꾸려면 `src/scenes.js`의 `C`를 고칩니다.
 - 장면 경계는 `timeline.json`의 `scenes`에서 조정합니다.
 - 로고는 제공받은 PNG를 벡터로 트레이싱한 `src/logo_paths.json`입니다. 공식 벡터(AI/SVG)를 받으면 이 파일만 교체하면 됩니다.
+
+## 지도 데이터
+지구본의 세계 지도는 Natural Earth 1:50m(퍼블릭 도메인)을 world-atlas 패키지(ISC 라이선스)로 받아 d3-geo 정사영으로 그렸습니다. 데이터를 다시 만들려면 `node tools/geo.mjs`를 실행합니다(결과: `src/geo.json`).

@@ -11,6 +11,8 @@ logo = (root / 'src/logo_paths.json').read_text()
 tpl = (root / 'src/page.html').read_text()
 engine = (root / 'src/engine.js').read_text()
 scenes = (root / 'src/scenes.js').read_text()
+geo = (root / 'src/geo.json').read_text()
+d3 = (root / 'node_modules/d3-array/dist/d3-array.min.js').read_text() + '\n' + (root / 'node_modules/d3-geo/dist/d3-geo.min.js').read_text()
 COPY = {
     'kr': dict(h1='스태츠칩팩코리아 기업 홍보 영상', meta='60초 · 1920×1080 · 60fps · 한국어 나레이션 · 직접 합성한 음악. 화면의 사실은 공식 자료로 확인된 내용만 담았습니다.',
                play='소리와 함께 재생', sound='소리 켬',
@@ -28,7 +30,7 @@ for lang, c in COPY.items():
     uri = ('data:audio/mp4;base64,' + base64.b64encode(aud.read_bytes()).decode()) if (aud.exists() and not no_audio) else ''
     page = (tpl.replace('/*FONTS*/', css).replace('/*TIMELINE*/', json.dumps(tl, ensure_ascii=False))
             .replace('/*LOGO*/', logo).replace('/*LANG*/', json.dumps(lang)).replace('/*CHAPTERS*/', json.dumps(c['chapters'], ensure_ascii=False))
-            .replace('/*ENGINE*/', engine).replace('/*SCENES*/', scenes)
+            .replace('/*GEO*/', geo).replace('/*D3*/', d3).replace('/*ENGINE*/', engine).replace('/*SCENES*/', scenes)
             .replace('/*H1*/', c['h1']).replace('/*META*/', c['meta']).replace('/*PLAY*/', c['play']).replace('/*SOUND*/', c['sound']).replace('/*ARIA*/', c['aria']))
     page = page.replace('src="/*AUDIO*/"', f'src="{uri}"' if uri else '')
     (out / f'sck_{lang}.html').write_text(page)
