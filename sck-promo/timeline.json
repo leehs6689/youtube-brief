@@ -1,0 +1,135 @@
+{
+ "duration": 60.0,
+ "fps": 60,
+ "bpm": 120,
+ "freezeFrom": 59.5,
+ "W": 1920,
+ "H": 1080,
+ "scenes": [
+  {
+   "id": "hook",
+   "start": 0.0,
+   "end": 4.5
+  },
+  {
+   "id": "heritage",
+   "start": 4.5,
+   "end": 17.5
+  },
+  {
+   "id": "tech",
+   "start": 17.5,
+   "end": 28.5
+  },
+  {
+   "id": "place",
+   "start": 28.5,
+   "end": 36.0
+  },
+  {
+   "id": "quality",
+   "start": 36.0,
+   "end": 43.25
+  },
+  {
+   "id": "scale",
+   "start": 43.25,
+   "end": 54.75
+  },
+  {
+   "id": "lockup",
+   "start": 54.75,
+   "end": 60.0
+  }
+ ],
+ "narration": {
+  "kr": [
+   {
+    "t": 0.4,
+    "file": "vo/kr_p1.wav",
+    "tempo": 1.1181,
+    "dur": 3.98
+   },
+   {
+    "t": 4.75,
+    "file": "vo/kr_p2.wav",
+    "tempo": 1.118,
+    "dur": 12.63
+   },
+   {
+    "t": 17.75,
+    "file": "vo/kr_p3.wav",
+    "tempo": 1.1421,
+    "dur": 10.63
+   },
+   {
+    "t": 28.75,
+    "file": "vo/kr_p4.wav",
+    "tempo": 1.1332,
+    "dur": 7.13
+   },
+   {
+    "t": 36.25,
+    "file": "vo/kr_p5.wav",
+    "tempo": 1.1119,
+    "dur": 6.88
+   },
+   {
+    "t": 43.5,
+    "file": "vo/kr_p6.wav",
+    "tempo": 1.1447,
+    "dur": 11.13
+   },
+   {
+    "t": 55.0,
+    "file": "vo/kr_p7.wav",
+    "tempo": 1.0,
+    "dur": 2.99
+   }
+  ],
+  "en": [
+   {
+    "t": 0.4,
+    "file": "vo/en_p1.wav",
+    "tempo": 1.0,
+    "dur": 3.33
+   },
+   {
+    "t": 4.75,
+    "file": "vo/en_p2.wav",
+    "tempo": 1.1235,
+    "dur": 12.63
+   },
+   {
+    "t": 17.75,
+    "file": "vo/en_p3.wav",
+    "tempo": 1.0,
+    "dur": 10.09
+   },
+   {
+    "t": 28.75,
+    "file": "vo/en_p4.wav",
+    "tempo": 1.0,
+    "dur": 5.95
+   },
+   {
+    "t": 36.25,
+    "file": "vo/en_p5.wav",
+    "tempo": 1.1294,
+    "dur": 6.88
+   },
+   {
+    "t": 43.5,
+    "file": "vo/en_p6.wav",
+    "tempo": 1.097,
+    "dur": 11.13
+   },
+   {
+    "t": 55.0,
+    "file": "vo/en_p7.wav",
+    "tempo": 1.0,
+    "dur": 3.95
+   }
+  ]
+ }
+}

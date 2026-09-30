@@ -1,0 +1,7 @@
+node_modules/
+frames*/
+out/*.wav
+out/render_*.html
+out/*.png
+out/render_log.txt
+vo/*.wav

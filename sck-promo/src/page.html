@@ -1,0 +1,91 @@
+<title>STATS ChipPAC Korea Film</title>
+<style>
+/*FONTS*/
+:root{
+  color-scheme: dark;
+  --surface:#03051A; --panel:#0A1250; --line:#22308A;
+  --ink:#FFFFFF; --muted:#A9B4E8; --accent:#00D6FF; --on-accent:#03051A; --mag:#CC25B8;
+  --fs:'Pretendard FS','Apple SD Gothic Neo',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--fs);padding-inline:16px;}
+.wrap{max-width:1180px;margin:0 auto;padding-block:24px 48px;display:flex;flex-direction:column;gap:18px}
+.screen{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;border-radius:6px}
+.screen canvas{display:block;width:100%;height:100%}
+.bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--panel);color:var(--ink);border:0;padding:10px 16px;font-weight:700;font-size:14px;min-height:44px;border-radius:6px}
+.btn.primary{background:var(--accent);color:var(--on-accent)}
+.btn[aria-pressed="true"]{outline:2px solid var(--accent)}
+.btn:focus-visible,.chap:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#scrub{flex:1 1 160px;accent-color:var(--accent);min-width:0;height:44px}
+#time{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;min-width:96px;text-align:right}
+h1{font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.1;margin:8px 0 4px}
+.meta{color:var(--muted);font-size:15px;margin:0;max-width:70ch;line-height:1.55}
+.chapters{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.chap{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:2px;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:6px;cursor:pointer;min-height:44px}
+.chap .t{font-variant-numeric:tabular-nums;color:var(--muted);font-size:12px}
+.chap .n{font-weight:700;font-size:15px}
+.chap[aria-current="true"]{border-color:var(--accent);background:var(--panel)}
+body.render{padding:0;background:#000}
+body.render .wrap{display:block;max-width:none;padding:0}
+body.render .screen{width:1920px;height:1080px;border-radius:0}
+body.render .bar,body.render .info{display:none}
+</style>
+<div class="wrap">
+  <div class="screen"><canvas id="c" width="1920" height="1080" role="img" aria-label="/*ARIA*/"></canvas></div>
+  <div class="bar">
+    <button class="btn primary" id="play" type="button">/*PLAY*/</button>
+    <button class="btn" id="mute" type="button" aria-pressed="false">/*SOUND*/</button>
+    <input id="scrub" type="range" min="0" max="60" step="0.0167" value="0" aria-label="Timeline position">
+    <span id="time">0.00 / 60.00</span>
+  </div>
+  <section class="info">
+    <h1>/*H1*/</h1>
+    <p class="meta">/*META*/</p>
+    <ol class="chapters" id="chapters"></ol>
+  </section>
+</div>
+<audio id="aud" preload="auto" src="/*AUDIO*/"></audio>
+<script>window.LANG=/*LANG*/;window.TIMELINE=/*TIMELINE*/;window.LOGO=/*LOGO*/;window.CHAPTERS=/*CHAPTERS*/;</script>
+<script>/*ENGINE*/</script>
+<script>/*SCENES*/</script>
+<script>
+(function(){
+  const E=window.MotionEngine, TL=window.TIMELINE, DUR=TL.duration;
+  const cv=document.getElementById('c');
+  const R=E.makeRenderer(cv,(ctx,t)=>window.Reel.draw(ctx,t),{fps:TL.fps,shutter:0.5,freezeFrom:TL.freezeFrom});
+  const isRender=/render=1/.test(location.search);
+  const fontsReady=Promise.all([400,500,600,700,800].map(w=>document.fonts.load(`${w} 50px 'Pretendard FS'`,'가A'))).then(()=>document.fonts.ready).catch(()=>{});
+  window.renderAt=(t,samples)=>{R.renderFrame(t,samples||1);return cv.toDataURL('image/png');};
+  window.ready=fontsReady.then(()=>true);
+  if(isRender){document.body.classList.add('render');window.ready.then(()=>R.renderFrame(0,1));return;}
+  const ol=document.getElementById('chapters');
+  const chaps=TL.scenes.map((s,k)=>{const li=document.createElement('li');const b=document.createElement('button');b.className='chap';b.type='button';
+    b.innerHTML='<span class="t"></span><span class="n"></span>';b.querySelector('.t').textContent=s.start.toFixed(1)+'s';b.querySelector('.n').textContent=window.CHAPTERS[k];
+    b.addEventListener('click',()=>seek(s.start+0.001));li.appendChild(b);ol.appendChild(li);return {s,b};});
+  const aud=document.getElementById('aud'),playB=document.getElementById('play'),muteB=document.getElementById('mute'),scrub=document.getElementById('scrub'),time=document.getElementById('time');
+  const L=window.LANG==='kr'?{play:'소리와 함께 재생',pause:'일시정지',replay:'다시 재생',on:'소리 켬',off:'소리 끔'}:{play:'Play with sound',pause:'Pause',replay:'Replay',on:'Sound on',off:'Sound off'};
+  let cur=0,playing=false,last=null,muted=false;
+  const hasAudio=!!aud.getAttribute('src');
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function paint(t){R.renderFrame(t,1);scrub.value=t;time.textContent=`${t.toFixed(2)} / ${DUR.toFixed(2)}`;
+    for(const c of chaps)c.b.setAttribute('aria-current',String(t>=c.s.start&&t<c.s.end));}
+  function seek(t){cur=Math.max(0,Math.min(DUR,t));paint(cur);if(hasAudio){try{aud.currentTime=cur;}catch(e){}}}
+  function setPlaying(p){playing=p;playB.textContent=p?L.pause:(cur>=DUR?L.replay:L.play);
+    if(p){if(cur>=DUR)seek(0);aud.muted=muted;if(hasAudio){try{aud.currentTime=cur;const pr=aud.play();if(pr&&pr.catch)pr.catch(()=>{});}catch(e){}}}else{aud.pause();}}
+  playB.addEventListener('click',()=>setPlaying(!playing));
+  muteB.addEventListener('click',()=>{muted=!muted;aud.muted=muted;muteB.textContent=muted?L.off:L.on;muteB.setAttribute('aria-pressed',String(muted));});
+  scrub.addEventListener('input',()=>{setPlaying(false);seek(+scrub.value);});
+  document.addEventListener('keydown',e=>{if(e.code==='Space'&&e.target===document.body){e.preventDefault();setPlaying(!playing);}});
+  function loop(ts){
+    if(playing){
+      if(hasAudio&&!aud.paused&&isFinite(aud.currentTime)&&Math.abs(aud.currentTime-cur)<0.25){cur=aud.currentTime;}else if(last!=null){cur+=(ts-last)/1000;}
+      last=ts;if(cur>=DUR){cur=DUR;paint(cur);setPlaying(false);}else paint(cur);
+    }else last=null;
+    requestAnimationFrame(loop);
+  }
+  window.ready.then(()=>{cur=reduce?TL.freezeFrom:0;paint(cur);requestAnimationFrame(loop);});
+})();
+</script>
